@@ -1,0 +1,48 @@
+container:
+  name: node-app
+  port: 3000
+
+image:
+  repo: 056201179630.dkr.ecr.us-east-1.amazonaws.com/nodejs_app
+  tag: latest
+
+deployment:
+  metadata:
+    name: app-deployment
+  replicas: 3
+
+pod:
+  metadata:
+    app: app-pod
+
+service:
+  metadata:
+    name: app-service
+  port: 3000
+  targetport: 3000
+
+ingress:
+  metadata:
+    name: app-ingress
+  ingressClassName: alb
+  host: "piblokto.org"
+  pathType: Prefix
+  certArn: arn:aws:acm:us-east-1:056201179630:certificate/8e8bf82d-a81c-495c-8812-b0937ecee401
+
+configmap:
+  metadata:
+    name: app-envs
+  NODE_ENV: development
+  CONTENTFUL_DELIVERY_API_HOST: cdn.contentful.com
+  CONTENTFUL_PREVIEW_API_HOST: preview.contentful.com
+  PORT: 3000
+
+secretManagerArn: arn:aws:secretsmanager:us-east-1:056201179630:secret:node_app_secrets-uwLKrG
+
+SecretProviderClass:
+  secretName: app-secrets
+
+Secret:
+  metadata:
+    name: app-tokens
+

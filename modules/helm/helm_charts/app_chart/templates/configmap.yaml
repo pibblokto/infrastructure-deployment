@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  NODE_ENV: {{ .Values.configmap.NODE_ENV | quote }}
+  CONTENTFUL_DELIVERY_API_HOST: {{ .Values.configmap.CONTENTFUL_DELIVERY_API_HOST | quote }}
+  CONTENTFUL_PREVIEW_API_HOST: {{ .Values.configmap.CONTENTFUL_PREVIEW_API_HOST| quote }}
+  PORT: {{ .Values.configmap.PORT| quote }}

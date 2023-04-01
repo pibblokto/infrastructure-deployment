@@ -1,0 +1,7 @@
+---
+  - name: Kube authorize
+    hosts: localhost
+    tasks:
+      - name: Get kubeconfig
+        ansible.builtin.shell: |
+          aws eks update-kubeconfig --name {{ lookup('ansible.builtin.env', 'CLUSTER_NAME') }}

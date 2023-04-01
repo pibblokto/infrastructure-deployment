@@ -1,0 +1,4 @@
+
+serviceAccountsRoles:
+  ingressControllerArn: "" # should be set during deployment after arn is generated
+  secretManagerArn: "" # should be set during deployment after arn is generated

@@ -1,0 +1,7 @@
+---
+  - name: Deploy new image
+    hosts: localhost
+    tasks:
+      - name: Set image version
+        ansible.builtin.shell: |
+          kubectl set image deployment/app-deployment node-app={{ lookup('ansible.builtin.env', 'NEW_IMAGE') }}
